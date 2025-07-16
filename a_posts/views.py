@@ -5,6 +5,12 @@ import requests
 from django.contrib import messages
 from .forms import *
 
+
+def welcome_view (request):
+    posts = Post.objects.all()
+    return render(request,'welcome.html', {'posts':posts})
+
+  
 def home_view (request):
     posts = Post.objects.all()
     return render(request,'a_posts/home.html', {'posts':posts})
@@ -71,3 +77,5 @@ def post_page_view(request, pk):
 
     post = get_object_or_404(Post, id=pk)
     return render (request,'a_posts/post_page.html', {'post':post})
+
+
