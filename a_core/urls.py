@@ -1,13 +1,16 @@
 
 from django.contrib import admin
-from django.urls import path
+from django.urls import path,include
 from a_posts.views import *
 from django.conf import settings
 from django.conf.urls.static import static
+from django.contrib.auth import views as auth_views
+
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('accounts/', include('allauth.urls')),
     path('home',home_view, name='home'),
     path('category/<tag>', home_view, name="category"),
     path('post/create/', post_create_view, name="post-create"),
@@ -15,6 +18,7 @@ urlpatterns = [
     path('post/edit/<pk>', post_edit_view, name="post-edit"),
     path('post/<pk>', post_page_view, name="post"),
     path('',welcome_view, name='welcome'),
+    
 
 
 
